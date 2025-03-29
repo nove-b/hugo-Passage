@@ -1,0 +1,26 @@
+# Hugo generated files
+public/
+resources/
+
+# Temporary files
+*.swp
+*~
+# OS generated files #OSによって不要なものは削除してください。
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Dependency directories (if applicable)
+node_modules/
+
+# IDE specific files (if applicable)
+.idea/
+.vscode/
+
+# Other files you might want to ignore
+*.sublime-project
+*.sublime-workspace
+
+.hugo_build.lock
