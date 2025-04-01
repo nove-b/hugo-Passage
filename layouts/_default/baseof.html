@@ -2,6 +2,7 @@
 <html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
 <head>
   {{ partial "head.html" . }}
+  {{ partialCached "css.html" . }}
 </head>
 <body>
   <header>
