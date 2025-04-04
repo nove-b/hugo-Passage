@@ -23,4 +23,5 @@ node_modules/
 *.sublime-project
 *.sublime-workspace
 
+/content
 .hugo_build.lock
