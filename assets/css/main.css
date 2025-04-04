@@ -1,2 +1,22 @@
 @import "tailwindcss";
 @source "hugo_stats.json";
+
+/* markdown-body */
+.markdown-body.introduction {
+	@apply border border-gray-300 rounded-2xl p-4;
+}
+.markdown-body h2 {
+	@apply text-xl font-bold  mt-4;
+}
+.markdown-body h3 {
+	@apply text-lg font-bold  mt-4;
+}
+.markdown-body a {
+	color: #0f83fd;
+}
+.markdown-body > * {
+	@apply mb-2;
+}
+.posts {
+	@apply mt-6;
+}
