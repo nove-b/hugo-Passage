@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://passage.netlify.app/'
 languageCode = 'en-US'
 title = 'My New Hugo Site'
 [[menus.main]]
