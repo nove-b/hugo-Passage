@@ -1,13 +1,13 @@
-name = 'Theme name'
+name = 'passage'
 license = 'MIT'
 licenselink = 'https://github.com/owner/repo/LICENSE'
 description = 'Theme description'
 
 # The home page of the theme, where the source can be found
-homepage = 'https://github.com/owner/repo'
+homepage = 'https://github.com/nove-b/hugo-Passage'
 
 # If you have a running demo of the theme
-demosite = 'https://owner.github.io/repo'
+demosite = 'passage.netlify.app/'
 
 # Taxonomy terms
 tags = ['blog', 'company']
