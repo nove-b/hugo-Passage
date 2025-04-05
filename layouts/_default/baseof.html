@@ -7,11 +7,11 @@
 </head>
 
 <body class="bg-[#faf8f1]">
-  <header class="flex justify-between items-center max-w-5xl mx-auto px-4">
+  <header class="flex justify-between items-center max-w-5xl mx-auto p-4">
     {{ partial "header.html" . }}
   </header>
-  <main class="max-w-3xl mx-auto px-4">
-    <div class="mt-4 flex items-center gap-4  ">
+  <main class="max-w-3xl mx-auto p-6">
+    <!-- <div class="mt-4 flex items-center gap-4  ">
       <div class="h-24 w-24 shrink-0 rounded-full"><img class="rounded-full"
           src="https://avatars.githubusercontent.com/u/68768186?v=4" alt="nove-b"></div>
       <div>
@@ -21,10 +21,10 @@
           {{- partial "social_icons.html" -}}
         </ul>
       </div>
-    </div>
+    </div> -->
     {{ block "main" . }}{{ end }}
   </main>
-  <footer>
+  <footer class="max-w-3xl mx-auto px-4 mt-10 py-6">
     {{ partial "footer.html" . }}
   </footer>
 </body>
