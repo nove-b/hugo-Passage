@@ -1,0 +1,80 @@
+{{ define "main" }}
+<h1 class="text-2xl mb-4">Tag: {{ .Page.Title }}</h1>
+
+
+
+{{ $tag := lower .Title }} <!-- 現在のタグ名（ページタイトル）を小文字に変換 -->
+
+{{ $allPages := where .Site.RegularPages "Type" "in" (slice "posts" "contribute" "anotherType") }}
+
+<!-- Params.tagsのタグを小文字に変換してからフィルタリング -->
+{{ $filteredPages := where $allPages "Params.tags" "intersect" (slice $tag) }}
+
+
+
+{{ if not $filteredPages }}
+  <p>指定されたタグの記事は見つかりませんでした。</p>
+{{ else }}
+  {{ $allYears := slice }}
+  {{ range $filteredPages }}
+    {{ $y := .PublishDate.Year }}
+    {{ if not (in $allYears $y) }}
+      {{ $allYears = $allYears | append $y }}
+    {{ end }}
+  {{ end }}
+
+  {{ $sortedYears := sort $allYears "value" "desc" }}
+
+
+
+  {{ range $year := $sortedYears }}
+    <section id="year-{{ $year }}" class="mt-10">
+      <h3 class="text-2xl font-semibold mb-4">{{ $year }}</h3>
+      <div class="posts relative border-l-2 border-gray-300 pl-6 space-y-6">
+        {{ $yearPages := where $filteredPages "PublishDate.Year" $year }}
+        
+        {{ range $yearPages }}
+          <article class="relative">
+            <span
+              class="absolute top-0 -left-6 -translate-x-1/2 w-8 h-8 bg-[#faf8f1] text-white flex items-center justify-center rounded-full text-lg">
+              {{ $type := .Params.type | default "post" }}
+              {{ if eq $type "contribute" }}
+                <i class="fa-brands fa-github text-[#59636e]"></i>
+              {{ else if eq $type "release" }}
+                <i class="fa-solid fa-rocket text-[#59636e]"></i>
+              {{ else }}
+                <i class="fa-solid fa-pen-nib text-[#59636e]"></i>
+              {{ end }}
+            </span>
+            <div class="flex items-center gap-2 mb-2">
+              <h3>
+                {{ $type := .Params.type | default "post" }}
+                {{ if eq $type "contribute" }}
+                  Contribute
+                {{ else if eq $type "release" }}
+                  Release
+                {{ else }}
+                  Blog
+                {{ end }}
+              </h3>
+
+              {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+              {{ $dateHuman := .Date | time.Format ":date_long" }}
+              <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+            </div>
+            <div class="border border-gray-300 rounded-2xl p-4">
+              <h2 class="text-lg">
+                {{ if eq $type "contribute" }}
+                  <a href="{{ .Params.link }}" target="_blank">{{ .Title }}<br /><span class="text-xs text-gray-400">{{ .Params.link }}</span></a>
+                {{ else }}
+                  <a href="{{ .Permalink }}">{{ .Title }}</a>
+                {{ end }}
+              </h2>
+            </div>
+          </article>
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
+{{ end }}
+{{ end }}

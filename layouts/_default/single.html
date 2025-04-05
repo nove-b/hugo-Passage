@@ -1,10 +1,32 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
+  <h1 class="text-2xl font-bold">{{ .Title }}</h1>
 
-  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-  {{ $dateHuman := .Date | time.Format ":date_long" }}
-  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+  <div class="mt-4 flex items-center gap-4">
+   <p>
 
-  {{ .Content }}
+     Created:
+     {{ $createdMachine := .PublishDate | time.Format "2006-01-02T15:04:05-07:00" }}
+     {{ $createdHuman := .PublishDate | time.Format ":date_long" }}
+     <relative-time datetime="{{ $createdMachine }}" class="no-wrap">
+       {{ $createdHuman }}
+     </relative-time>
+   </p>
+  
+    {{ if .GitInfo.CommitDate }}
+    <p>
+
+      Modified:
+      {{ $modifiedMachine := .GitInfo.CommitDate | time.Format "2006-01-02T15:04:05-07:00" }}
+      {{ $modifiedHuman := .GitInfo.CommitDate | time.Format ":date_long" }}
+      <relative-time datetime="{{ $modifiedMachine }}" class="no-wrap">
+        {{ $modifiedHuman }}
+      </relative-time>
+    </p>
+    {{ end }}
+  </div>
+    <div class="markdown-body mt-6">
+    {{ .Content }}
+  </div>
   {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+  
 {{ end }}

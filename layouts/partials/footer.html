@@ -1,1 +1,21 @@
-<p>Copyright {{ now.Year }}. All rights reserved.</p>
+<small>
+  {{- if not site.Params.footer.hideCopyright }}
+  {{- if site.Copyright }}
+  <span>{{ site.Copyright | markdownify }}</span>
+  {{- else }}
+  <span>&copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a></span>
+  {{- end }}
+  {{- print " · "}}
+{{- end }}
+
+{{- with site.Params.footer.text }}
+  {{ . | markdownify }}
+  {{- print " · "}}
+{{- end }}
+
+<span>
+  Powered by
+  <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+  <a href="https://github.com/nove-b/hugo-Passage" rel="noopener" target="_blank">Passage</a> 
+</span>
+</small>

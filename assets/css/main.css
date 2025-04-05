@@ -6,16 +6,54 @@
 	@apply border border-gray-300 rounded-2xl p-4;
 }
 .markdown-body h2 {
-	@apply text-xl font-bold  mt-4;
+	@apply text-xl font-bold  mt-6;
 }
 .markdown-body h3 {
-	@apply text-lg font-bold  mt-4;
+	@apply text-lg font-bold  mt-6;
 }
 .markdown-body a {
 	color: #0f83fd;
 }
+
+/* ベースの li スタイル */
+.markdown-body ul li {
+  @apply relative pl-4 list-none;
+}
+
+.markdown-body ul li::before {
+  content: '・';
+  @apply absolute left-0 text-gray-800; 
+}
+
+.markdown-body pre {
+  @apply p-4 rounded-2xl overflow-x-auto font-mono text-[#d5d5d6] bg-[#272822] break-words;
+}
+
+.markdown-body pre > * {
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace,
+   
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !important;
+}
+.markdown-body p > code {
+  @apply p-1 text-xs ;
+  /* 必要に応じて他のスタイルも追加できます */
+}
+
+.markdown-body p > code::before,
+.markdown-body p > code::after {
+ content: "'";
+}
+
+.markdown-body img {
+  @apply rounded-2xl;
+}
+
+.markdown-body hr {
+  @apply border-t border-gray-300 ;
+}
+
 .markdown-body > * {
-	@apply mb-2;
+	@apply mb-4;
 }
 .posts {
 	@apply mt-6;
