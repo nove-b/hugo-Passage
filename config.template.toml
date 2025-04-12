@@ -1,0 +1,41 @@
+baseURL = 'https://example.com/'
+languageCode = 'ja'
+title = 'My Hugo Blog'
+theme = 'passage'
+
+[params]
+  analytics = "G-XXXXXXX123" # ダミーのGA4トラッキングID
+
+[params.profile]
+name = "sample-user"
+bio = "これはサンプルの自己紹介です。"
+avatar = "/images/sample-avatar.jpg"
+
+[params.profile.social]
+mastodon = "https://mastodon.social/@sample_user"
+github = "https://github.com/sample-user"
+mail = "sample.user@example.com"
+discord = "https://discord.com/users/sample_user"
+linkedin = "https://www.linkedin.com/in/sample-user"
+link = "https://example.com/"
+
+[build]
+  [build.buildStats]
+    enable = true
+  [[build.cachebusters]]
+    source = 'assets/notwatching/hugo_stats\.json'
+    target = 'css'
+  [[build.cachebusters]]
+    source = '(postcss|tailwind)\.config\.js'
+    target = 'css'
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = "0.116.0"
+  [[module.mounts]]
+    source = 'assets'
+    target = 'assets'
+  [[module.mounts]]
+    disableWatch = true
+    source = 'hugo_stats.json'
+    target = 'assets/notwatching/hugo_stats.json'

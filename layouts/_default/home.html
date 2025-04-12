@@ -1,10 +1,10 @@
 {{ define "main" }}
 <div class="flex items-center gap-4  ">
   <div class="h-24 w-24 shrink-0 rounded-full"><img class="rounded-full"
-      src="https://avatars.githubusercontent.com/u/68768186?v=4" alt="nove-b"></div>
+      src="{{ .Site.Params.profile.avatar }}" alt="{{ .Site.Params.profile.name }}"></div>
   <div>
-    <div class="mt-3 mb-1 text-2xl font-medium text-black ">nove-b</div>
-    <div class="break-words">個人開発でのプログラミングこそが至高</div>
+    <div class="mt-3 mb-1 text-2xl font-medium text-black ">{{ .Site.Params.profile.name }}</div>
+    <div class="break-words">{{ .Site.Params.profile.bio }}</div>
     <ul class="mt-2 flex gap-2 items-center">
       {{- partial "social_icons.html" -}}
     </ul>
@@ -29,7 +29,7 @@
 <nav class="mt-10 flex flex-wrap gap-2">
   {{ range $year := $sortedYears }}
   <a href="#year-{{ $year }}"
-    class="px-3 py-1 border border-gray-300 bg-[#faf8f1] rounded-full text-sm hover:bg-gray-100 text-gray-600">
+    class="px-3 py-1 border border-gray-300 bg-[#f5f5f5] rounded-full text-sm hover:bg-gray-100 text-gray-600">
     {{ $year }}
   </a>
   {{ end }}
@@ -45,25 +45,31 @@
     {{ range $yearPages }}
     <article class="relative ">
       <span
-        class="absolute top-0 -left-6 -translate-x-1/2 w-8 h-8 bg-[#faf8f1] text-white flex items-center justify-center rounded-full text-lg">
+        class="absolute top-0 -left-6 -translate-x-1/2 w-8 h-8 bg-[#f5f5f5] text-white flex items-center justify-center rounded-full text-lg">
         {{ $type := .Params.type | default "post" }}
         {{ if eq $type "contribute" }}
-        <i class="fa-brands fa-github text-[#59636e]"></i>
+
+        {{ partial "timeline-github.html" . }}
         {{ else if eq $type "release" }}
-        <i class="fa-solid fa-rocket text-[#59636e]"></i>
+
+
+        {{ partial "timeline-release.html" . }}
         {{ else }}
-        <i class="fa-solid fa-pen-nib text-[#59636e]"></i>
+
+
+        {{ partial "timeline-post.html" . }}
         {{ end }}
       </span>
       <div class="flex items-center gap-2 mb-2">
         <h3>
           {{ $type := .Params.type | default "post" }}
           {{ if eq $type "contribute" }}
-          Contribute
+          <span class="px-3  py-1  bg-[#f5f5f5]  text-sm hover:bg-gray-100 text-gray-600">Contribute</span>
           {{ else if eq $type "release" }}
-          Release
+          <span class="bg-[#f5f5f5]  text-sm hover:bg-gray-100 text-gray-600">Release
+          </span>
           {{ else }}
-          Blog
+          <span class="bg-[#f5f5f5]  text-sm hover:bg-gray-100 text-gray-600">Blog</span>
           {{ end }}
 
         </h3>
@@ -72,16 +78,28 @@
         {{ $dateHuman := .Date | time.Format ":date_long" }}
         <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
       </div>
-      <div class="border border-gray-300 rounded-2xl p-4">
-        <h2 class="text-lg ">
-          {{ if or (eq $type "contribute") (eq $type "release") }}
-          <a href="{{ .Params.link }}" target="_blank">{{ .Title }}<br /><span class="text-xs text-gray-400">{{
-              .Params.link }}</span></a>
-          {{ else }}
-          <a href="{{ .Permalink }}">{{ .Title }}</a>
-          {{ end }}
+      {{ if or (eq $type "contribute") (eq $type "release") }}
+      <a href="{{ .Params.link }}" target="_blank" class="block border border-gray-300 rounded-2xl p-4 relative">
+        <h2 class="text-lg">
+          {{ .Title }}<br /><span class="text-xs text-gray-400">{{ .Params.link }}</span>
+
         </h2>
-      </div>
+        <div class="absolute bottom-2.5 right-2.5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 36 36"
+            style="fill: rgba(89, 99, 110, 1);transform: ;msFilter:;">
+            <path d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z"></path>
+            <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z">
+            </path>
+          </svg>
+        </div>
+      </a>
+      {{ else }}
+      <a href="{{ .Permalink }}" class="block border border-gray-300 rounded-2xl p-4">
+        <h2 class="text-lg">
+          {{ .Title }}
+        </h2>
+      </a>
+      {{ end }}
 
     </article>
     {{ end }}
