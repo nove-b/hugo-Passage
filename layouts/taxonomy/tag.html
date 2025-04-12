@@ -13,68 +13,89 @@
 
 
 {{ if not $filteredPages }}
-  <p>指定されたタグの記事は見つかりませんでした。</p>
+<p>指定されたタグの記事は見つかりませんでした。</p>
 {{ else }}
-  {{ $allYears := slice }}
-  {{ range $filteredPages }}
-    {{ $y := .PublishDate.Year }}
-    {{ if not (in $allYears $y) }}
-      {{ $allYears = $allYears | append $y }}
-    {{ end }}
-  {{ end }}
+{{ $allYears := slice }}
+{{ range $filteredPages }}
+{{ $y := .PublishDate.Year }}
+{{ if not (in $allYears $y) }}
+{{ $allYears = $allYears | append $y }}
+{{ end }}
+{{ end }}
 
-  {{ $sortedYears := sort $allYears "value" "desc" }}
+{{ $sortedYears := sort $allYears "value" "desc" }}
 
 
 
-  {{ range $year := $sortedYears }}
-    <section id="year-{{ $year }}" class="mt-10">
-      <h3 class="text-2xl font-semibold mb-4">{{ $year }}</h3>
-      <div class="posts relative border-l-2 border-gray-300 pl-6 space-y-6">
-        {{ $yearPages := where $filteredPages "PublishDate.Year" $year }}
-        
-        {{ range $yearPages }}
-          <article class="relative">
-            <span
-              class="absolute top-0 -left-6 -translate-x-1/2 w-8 h-8 bg-[#faf8f1] text-white flex items-center justify-center rounded-full text-lg">
-              {{ $type := .Params.type | default "post" }}
-              {{ if eq $type "contribute" }}
-                <i class="fa-brands fa-github text-[#59636e]"></i>
-              {{ else if eq $type "release" }}
-                <i class="fa-solid fa-rocket text-[#59636e]"></i>
-              {{ else }}
-                <i class="fa-solid fa-pen-nib text-[#59636e]"></i>
-              {{ end }}
-            </span>
-            <div class="flex items-center gap-2 mb-2">
-              <h3>
-                {{ $type := .Params.type | default "post" }}
-                {{ if eq $type "contribute" }}
-                  Contribute
-                {{ else if eq $type "release" }}
-                  Release
-                {{ else }}
-                  Blog
-                {{ end }}
-              </h3>
+{{ range $year := $sortedYears }}
+<section id="year-{{ $year }}" class="mt-10">
+  <h3 class="text-2xl font-semibold mb-4">{{ $year }}</h3>
+  <div class="posts relative border-l-2 border-gray-300 pl-6 space-y-6">
+    {{ $yearPages := where $filteredPages "PublishDate.Year" $year }}
 
-              {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-              {{ $dateHuman := .Date | time.Format ":date_long" }}
-              <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-            </div>
-            <div class="border border-gray-300 rounded-2xl p-4">
-              <h2 class="text-lg">
-                {{ if eq $type "contribute" }}
-                  <a href="{{ .Params.link }}" target="_blank">{{ .Title }}<br /><span class="text-xs text-gray-400">{{ .Params.link }}</span></a>
-                {{ else }}
-                  <a href="{{ .Permalink }}">{{ .Title }}</a>
-                {{ end }}
-              </h2>
-            </div>
-          </article>
+    {{ range $yearPages }}
+    <article class="relative">
+      <span
+        class="absolute top-0 -left-6 -translate-x-1/2 w-8 h-8 bg-[#f5f5f5] text-white flex items-center justify-center rounded-full text-lg">
+        {{ $type := .Params.type | default "post" }}
+        {{ if eq $type "contribute" }}
+
+        {{ partial "timeline-github.html" . }}
+        {{ else if eq $type "release" }}
+
+
+        {{ partial "timeline-release.html" . }}
+        {{ else }}
+
+
+        {{ partial "timeline-post.html" . }}
         {{ end }}
+      </span>
+      <div class="flex items-center gap-2 mb-2">
+        <h3>
+          {{ $type := .Params.type | default "post" }}
+          {{ if eq $type "contribute" }}
+          <span class="px-3  py-1  bg-[#f5f5f5]  text-sm hover:bg-gray-100 text-gray-600">Contribute</span>
+          {{ else if eq $type "release" }}
+          <span class="bg-[#f5f5f5]  text-sm hover:bg-gray-100 text-gray-600">Release
+          </span>
+          {{ else }}
+          <span class="bg-[#f5f5f5]  text-sm hover:bg-gray-100 text-gray-600">Blog</span>
+          {{ end }}
+
+        </h3>
+
+        {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+        {{ $dateHuman := .Date | time.Format ":date_long" }}
+        <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
       </div>
-    </section>
-  {{ end }}
+      {{ if or (eq $type "contribute") (eq $type "release") }}
+      <a href="{{ .Params.link }}" target="_blank" class="block border border-gray-300 rounded-2xl p-4 relative">
+        <h2 class="text-lg">
+          {{ .Title }}<br /><span class="text-xs text-gray-400">{{ .Params.link }}</span>
+
+        </h2>
+        <div class="absolute bottom-2.5 right-2.5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 36 36"
+            style="fill: rgba(89, 99, 110, 1);transform: ;msFilter:;">
+            <path d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z"></path>
+            <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z">
+            </path>
+          </svg>
+        </div>
+      </a>
+      {{ else }}
+      <a href="{{ .Permalink }}" class="block border border-gray-300 rounded-2xl p-4">
+        <h2 class="text-lg">
+          {{ .Title }}
+        </h2>
+      </a>
+      {{ end }}
+
+    </article>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
 {{ end }}
 {{ end }}

@@ -6,16 +6,16 @@
   <span>&copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a></span>
   {{- end }}
   {{- print " · "}}
-{{- end }}
+  {{- end }}
 
-{{- with site.Params.footer.text }}
+  {{- with site.Params.footer.text }}
   {{ . | markdownify }}
   {{- print " · "}}
-{{- end }}
+  {{- end }}
 
-<span>
-  Powered by
-  <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-  <a href="https://github.com/nove-b/hugo-Passage" rel="noopener" target="_blank">Passage</a> 
-</span>
+  <span>
+    Powered by
+    <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+    <a href="https://github.com/nove-b/hugo-Passage" rel="noopener" target="_blank">Passage</a>
+  </span>
 </small>
