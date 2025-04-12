@@ -1,10 +1,10 @@
 {{ define "main" }}
 <div class="flex items-center gap-4  ">
   <div class="h-24 w-24 shrink-0 rounded-full"><img class="rounded-full"
-      src="https://avatars.githubusercontent.com/u/68768186?v=4" alt="nove-b"></div>
+      src="{{ .Site.Params.profile.avatar }}" alt="{{ .Site.Params.profile.name }}"></div>
   <div>
-    <div class="mt-3 mb-1 text-2xl font-medium text-black ">nove-b</div>
-    <div class="break-words">個人開発でのプログラミングこそが至高</div>
+    <div class="mt-3 mb-1 text-2xl font-medium text-black ">{{ .Site.Params.profile.name }}</div>
+    <div class="break-words">{{ .Site.Params.profile.bio }}</div>
     <ul class="mt-2 flex gap-2 items-center">
       {{- partial "social_icons.html" -}}
     </ul>

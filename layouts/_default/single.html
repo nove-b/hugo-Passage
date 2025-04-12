@@ -29,4 +29,36 @@
 </div>
 {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
 
+<div class="mt-8">
+  <h3 class="text-xl font-semibold mb-4">新着記事</h3>
+  <ul class="space-y-4">
+    {{ $type := .Type | default "post" }}
+    {{ $allPages := where .Site.Pages "Type" "in" (slice $type "") }}
+    
+    <!-- draft: false の記事のみフィルタリング -->
+    {{ $allPages := where $allPages "Params.draft" "ne" true }}
+
+    {{ if gt (len $allPages) 0 }}
+      {{ $filteredPages := first 5 (where $allPages "Permalink" "ne" .Permalink) }}
+      {{ range $filteredPages }}
+        <li>
+          <a href="{{ .Permalink }}" class="underline">
+            {{ .Title }}
+          </a>
+        </li>
+      {{ end }}
+    {{ else }}
+      <li>記事が見つかりませんでした。</li>
+    {{ end }}
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
 {{ end }}

@@ -51,6 +51,9 @@
   @apply border-t border-gray-300;
 }
 
+.markdown-body > *:first-child {
+  @apply mt-0;
+}
 .markdown-body > * {
   @apply mb-4;
 }
