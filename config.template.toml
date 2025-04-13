@@ -2,6 +2,8 @@ baseURL = 'https://example.com/'
 languageCode = 'ja'
 title = 'My Hugo Blog'
 theme = 'passage'
+enableGitInfo = true
+
 
 [params]
   analytics = "G-XXXXXXX123" # ダミーのGA4トラッキングID
@@ -18,6 +20,9 @@ mail = "sample.user@example.com"
 discord = "https://discord.com/users/sample_user"
 linkedin = "https://www.linkedin.com/in/sample-user"
 link = "https://example.com/"
+
+[frontmatter]
+  lastmod = ["lastmod", ":git", ":fileModTime", ":default"]
 
 [build]
   [build.buildStats]

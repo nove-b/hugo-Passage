@@ -1,7 +1,7 @@
 {{ define "main" }}
 <h1 class="text-2xl font-bold">{{ .Title }}</h1>
 
-<div class="mt-4 flex items-center gap-4">
+<div class="mt-4 flex items-center gap-4 text-xs text-gray-500">
   <p>
 
     Created:
@@ -34,21 +34,21 @@
   <ul class="space-y-4">
     {{ $type := .Type | default "post" }}
     {{ $allPages := where .Site.Pages "Type" "in" (slice $type "") }}
-    
+
     <!-- draft: false の記事のみフィルタリング -->
     {{ $allPages := where $allPages "Params.draft" "ne" true }}
 
     {{ if gt (len $allPages) 0 }}
-      {{ $filteredPages := first 5 (where $allPages "Permalink" "ne" .Permalink) }}
-      {{ range $filteredPages }}
-        <li>
-          <a href="{{ .Permalink }}" class="underline">
-            {{ .Title }}
-          </a>
-        </li>
-      {{ end }}
+    {{ $filteredPages := first 5 (where $allPages "Permalink" "ne" .Permalink) }}
+    {{ range $filteredPages }}
+    <li>
+      <a href="{{ .Permalink }}" class="underline">
+        {{ .Title }}
+      </a>
+    </li>
+    {{ end }}
     {{ else }}
-      <li>記事が見つかりませんでした。</li>
+    <li>記事が見つかりませんでした。</li>
     {{ end }}
   </ul>
 </div>
