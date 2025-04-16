@@ -28,22 +28,34 @@
 {{ if gt (len $sortedYears) 1 }}
 <nav class="mt-10 flex flex-wrap gap-2">
   {{ range $year := $sortedYears }}
-  <a href="#year-{{ $year }}"
-    class="px-3 py-1 border border-gray-300 bg-[#f5f5f5] rounded-full text-sm hover:bg-gray-100 text-gray-600">
+  <button data-year="{{ $year }}"
+    class="anchor-button px-3 py-1 border border-gray-300 bg-[#f5f5f5] rounded-full text-sm hover:bg-gray-100 text-gray-600">
     {{ $year }}
-  </a>
+  </button>
   {{ end }}
 </nav>
 {{ end }}
 
+<div class="mt-5 flex flex-wrap gap-2">
+  <button data-type="post"
+    class="refine-button px-3 py-1 border border-gray-300 bg-[#f5f5f5] rounded-full text-sm hover:bg-gray-100 text-gray-600">
+    Post</button>
+  <button data-type="contribute"
+    class="refine-button px-3 py-1 border border-gray-300 bg-[#f5f5f5] rounded-full text-sm hover:bg-gray-100 text-gray-600">
+    Contribute</button>
+  <button data-type="release"
+    class="refine-button px-3 py-1 border border-gray-300 bg-[#f5f5f5] rounded-full text-sm hover:bg-gray-100 text-gray-600">
+    Release</button>
+</div>
+
 
 {{ range $year := $sortedYears }}
-<section id="year-{{ $year }}" class="mt-10">
+<section id="year-{{ $year }}" class="article-list mt-10">
   <h3 class="text-2xl font-semibold mb-4">{{ $year }}</h3>
   <div class="posts relative border-l-2 border-gray-300 pl-6 space-y-6">
     {{ $yearPages := where $allPages "PublishDate.Year" $year }}
     {{ range $yearPages }}
-    <article class="relative ">
+    <article class="relative article-item {{ .Params.type  | default " post" }}">
       <span
         class="absolute top-0 -left-6 -translate-x-1/2 w-8 h-8 bg-[#f5f5f5] text-white flex items-center justify-center rounded-full text-lg">
         {{ $type := .Params.type | default "post" }}
