@@ -1,6 +1,16 @@
 @import "tailwindcss";
 @source "hugo_stats.json";
 
+/* global */
+
+button {
+  @apply cursor-pointer hover:opacity-70 transition-opacity duration-200;
+}
+
+a {
+  @apply hover:opacity-80 transition-colors duration-200;
+}
+
 /* markdown-body */
 .markdown-body.introduction {
   @apply border border-gray-300 rounded-2xl p-4;

@@ -55,7 +55,7 @@
   <div class="posts relative border-l-2 border-gray-300 pl-6 space-y-6">
     {{ $yearPages := where $allPages "PublishDate.Year" $year }}
     {{ range $yearPages }}
-    <article class="relative article-item {{ .Params.type  | default " post" }}">
+    <article class="relative article-item group {{ .Params.type  | default " post" }}">
       <span
         class="absolute top-0 -left-6 -translate-x-1/2 w-8 h-8 bg-[#f5f5f5] text-white flex items-center justify-center rounded-full text-lg">
         {{ $type := .Params.type | default "post" }}
