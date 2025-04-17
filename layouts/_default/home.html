@@ -28,7 +28,7 @@
 {{ if gt (len $sortedYears) 1 }}
 <nav class="mt-10 flex flex-wrap gap-2">
   {{ range $year := $sortedYears }}
-  <button data-year="{{ $year }}"
+  <button type="button" data-year="{{ $year }}"
     class="anchor-button px-3 py-1 border border-gray-300 bg-[#f5f5f5] rounded-full text-sm hover:bg-gray-100 text-gray-600">
     {{ $year }}
   </button>
@@ -37,13 +37,13 @@
 {{ end }}
 
 <div class="mt-5 flex flex-wrap gap-2">
-  <button data-type="post"
+  <button type="button" data-type="post"
     class="refine-button px-3 py-1 border border-gray-300 bg-[#f5f5f5] rounded-full text-sm hover:bg-gray-100 text-gray-600">
     Post</button>
-  <button data-type="contribute"
+  <button type="button" data-type="contribute"
     class="refine-button px-3 py-1 border border-gray-300 bg-[#f5f5f5] rounded-full text-sm hover:bg-gray-100 text-gray-600">
     Contribute</button>
-  <button data-type="release"
+  <button type="button" data-type="release"
     class="refine-button px-3 py-1 border border-gray-300 bg-[#f5f5f5] rounded-full text-sm hover:bg-gray-100 text-gray-600">
     Release</button>
 </div>

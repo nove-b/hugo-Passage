@@ -7,6 +7,14 @@ button {
   @apply cursor-pointer hover:opacity-70 transition-opacity duration-200;
 }
 
+button,
+input,
+select,
+textarea,
+a {
+  @apply focus:outline-none focus:ring-2 focus:ring-[#0f83fd];
+}
+
 a {
   @apply hover:opacity-80 transition-colors duration-200;
 }
@@ -15,12 +23,15 @@ a {
 .markdown-body.introduction {
   @apply border border-gray-300 rounded-2xl p-4;
 }
+
 .markdown-body h2 {
-  @apply text-xl font-bold  mt-6;
+  @apply text-xl font-bold mt-6;
 }
+
 .markdown-body h3 {
-  @apply text-lg font-bold  mt-6;
+  @apply text-lg font-bold mt-6;
 }
+
 .markdown-body a {
   color: #0f83fd;
 }
@@ -43,6 +54,7 @@ a {
   font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
 }
+
 .markdown-body p > code {
   @apply p-1 text-xs;
   /* 必要に応じて他のスタイルも追加できます */
@@ -64,9 +76,11 @@ a {
 .markdown-body > *:first-child {
   @apply mt-0;
 }
+
 .markdown-body > * {
   @apply mb-4;
 }
+
 .markdown-body > *:last-child {
   @apply mb-0;
 }
