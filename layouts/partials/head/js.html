@@ -1,7 +1,6 @@
 {{- with resources.Get "js/main.js" }}
 {{- if eq hugo.Environment "development" }}
 {{- with . | js.Build }}
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.1.0"></script>
 <script src="{{ .RelPermalink }}" defer></script>
 {{- end }}
 {{- else }}
