@@ -3,13 +3,14 @@
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 {{ if .Site.Params.analytics }}
-  <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.analytics }}"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '{{ .Site.Params.analytics }}');
-  </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.analytics }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', '{{ .Site.Params.analytics }}');
+</script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.1.0"></script>
 {{ end }}
 {{ partialCached "head/css.html" . }}
 {{ partialCached "head/js.html" . }}
