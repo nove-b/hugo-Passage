@@ -1,0 +1,40 @@
+/* Default (light mode) */
+@theme {
+  --font-sans: "Figtree", sans-serif;
+  --font-title: "Fraunces", serif;
+  --font-mono: "Source Code Pro", "ui-monospace", "Cascadia Code", "Menlo",
+    "Consolas", "DejaVu Sans Mono", "monospace";
+
+  --color-passage-bg: #f5f5f5;
+  --color-modal-bg: #f5f6f7;
+  --color-modal-drop: #00000040;
+  --color-input-bg: #ffffff;
+  --color-passage-font: #000000;
+  --color-description-font: #d1d5dc;
+  --color-link: #0f83fd;
+  --color-ring: #0f83fd;
+  --color-button-bg: #f5f5f5;
+  --color-svg-fill: #59636e;
+  --color-border: #d1d5dc;
+  --color-github-fill: #000000;
+  --color-release-fill: #f97316;
+  --color-post-fill: #facc15;
+}
+
+/* Dark mode */
+.dark {
+  --color-passage-bg: #121212;
+  --color-modal-bg: #23272f;
+  --color-modal-drop: #343a46cc;
+  --color-input-bg: #343a46;
+  --color-passage-font: #ffffff;
+  --color-description-font: #9ca3af;
+  --color-link: #60a5fa;
+  --color-ring: #60a5fa;
+  --color-button-bg: #1f2937;
+  --color-svg-fill: #d1d5dc;
+  --color-border: #374151;
+  --color-github-fill: #ffffff;
+  --color-release-fill: #fb923c;
+  --color-post-fill: #fde047;
+}

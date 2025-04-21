@@ -6,3 +6,7 @@ https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
 
 The rest of this file is intentionally empty.
 */
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: "class", // ここを変更
+};

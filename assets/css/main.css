@@ -1,7 +1,9 @@
 @import "tailwindcss";
-@source "hugo_stats.json";
 
 /* global */
+* {
+  @apply text-passage-font;
+}
 
 button {
   @apply cursor-pointer hover:opacity-70 transition-opacity duration-200;
@@ -12,16 +14,20 @@ input,
 select,
 textarea,
 a {
-  @apply focus:outline-none focus:ring-2 focus:ring-[#0f83fd];
+  @apply focus:outline-none focus:ring-2 focus:ring-[var(--color-ring)];
 }
 
 a {
   @apply hover:opacity-80 transition-colors duration-200;
 }
 
+dialog::backdrop {
+  @apply bg-[var(--color-modal-drop)];
+}
+
 /* markdown-body */
 .markdown-body.introduction {
-  @apply border border-gray-300 rounded-2xl p-4;
+  @apply border border-[var(--color-border)] rounded-2xl p-4;
 }
 
 .markdown-body h2 {
@@ -33,7 +39,7 @@ a {
 }
 
 .markdown-body a {
-  color: #0f83fd;
+  @apply text-[var(--color-link)];
 }
 
 /* ベースの li スタイル */
@@ -70,7 +76,7 @@ a {
 }
 
 .markdown-body hr {
-  @apply border-t border-gray-300;
+  @apply border-t border-[var(--color-border)];
 }
 
 .markdown-body > *:first-child {
