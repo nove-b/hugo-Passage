@@ -85,6 +85,43 @@
   });
 })();
 
+(() => {
+  const switchThemeButton = document.querySelector(".switch-theme-button");
+
+  const lightElements = document.querySelector(".sun");
+  const darkElements = document.querySelector(".night");
+
+  switchThemeButton.addEventListener("click", () => {
+    const isDarkMode = document.documentElement.classList.contains("dark");
+
+    darkElements.classList.remove("hidden");
+    lightElements.classList.remove("hidden");
+
+    if (isDarkMode) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+
+      lightElements.classList.add("hidden");
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+
+      darkElements.classList.add("hidden");
+    }
+  });
+
+  // ページロード時にテーマを適用
+  const savedTheme = localStorage.getItem("theme");
+  const isDarkMode = savedTheme === "dark";
+
+  if (isDarkMode) {
+    document.documentElement.classList.add("dark");
+    lightElements.classList.remove("hidden");
+  } else {
+    darkElements.classList.remove("hidden");
+  }
+})();
+
 // search dialog
 let fuse;
 let searchIndex = [];
@@ -125,7 +162,7 @@ const search = (query) => {
   const createSearchItem = (title, link, index) => {
     return `
       <p>
-        <a href="${link}" class="block py-2 border-b border-gray-200 text-sm">${title}</a>
+        <a href="${link}" class="block p-2 border-t border-[var(--color-border)] text-sm">${title}</a>
       </p>
     `;
   };

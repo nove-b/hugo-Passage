@@ -30,13 +30,13 @@
 {{ range $year := $sortedYears }}
 <section id="year-{{ $year }}" class="mt-10">
   <h3 class="text-2xl font-semibold mb-4">{{ $year }}</h3>
-  <div class="posts relative border-l-2 border-gray-300 pl-6 space-y-6">
+  <div class="posts relative border-l-2 border-[var(--color-border)] pl-6 space-y-6">
     {{ $yearPages := where $filteredPages "PublishDate.Year" $year }}
 
     {{ range $yearPages }}
     <article class="relative">
       <span
-        class="absolute top-0 -left-6 -translate-x-1/2 w-8 h-8 bg-[#f5f5f5] text-white flex items-center justify-center rounded-full text-lg">
+        class="absolute top-0 -left-6 -translate-x-1/2 w-8 h-8 bg-passage-bg text-white flex items-center justify-center rounded-full text-lg">
         {{ $type := .Params.type | default "post" }}
         {{ if eq $type "contribute" }}
 
@@ -55,12 +55,12 @@
         <h3>
           {{ $type := .Params.type | default "post" }}
           {{ if eq $type "contribute" }}
-          <span class="px-3  py-1  bg-[#f5f5f5]  text-sm hover:bg-gray-100 text-gray-600">Contribute</span>
+          <span class="px-3  py-1  px-3  py-1    text-sm  text-[var(--color-description-font)]">Contribute</span>
           {{ else if eq $type "release" }}
-          <span class="bg-[#f5f5f5]  text-sm hover:bg-gray-100 text-gray-600">Release
+          <span class="px-3  py-1    text-sm  text-[var(--color-description-font)]">Release
           </span>
           {{ else }}
-          <span class="bg-[#f5f5f5]  text-sm hover:bg-gray-100 text-gray-600">Blog</span>
+          <span class="px-3  py-1    text-sm  text-[var(--color-description-font)]">Blog</span>
           {{ end }}
 
         </h3>
@@ -70,9 +70,9 @@
         <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
       </div>
       {{ if or (eq $type "contribute") (eq $type "release") }}
-      <a href="{{ .Params.link }}" target="_blank" class="block border border-gray-300 rounded-2xl p-4 relative">
-        <h2 class="text-lg">
-          {{ .Title }}<br /><span class="text-xs text-gray-400">{{ .Params.link }}</span>
+      <a href="{{ .Params.link }}" target="_blank" class="block border border-[var(--color-border)] rounded-2xl p-4 relative">
+        <h2 >
+          {{ .Title }}<br /><span class="text-xs text-[var(--color-description-font)]">{{ .Params.link }}</span>
 
         </h2>
         <div class="absolute bottom-2.5 right-2.5">
@@ -85,7 +85,7 @@
         </div>
       </a>
       {{ else }}
-      <a href="{{ .Permalink }}" class="block border border-gray-300 rounded-2xl p-4">
+      <a href="{{ .Permalink }}" class="block border border-[var(--color-border)] rounded-2xl p-4">
         <h2>
           {{ .Title }}
         </h2>
