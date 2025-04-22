@@ -25,6 +25,28 @@ dialog::backdrop {
   @apply bg-[var(--color-modal-drop)];
 }
 
+/* markdown-table-content */
+
+.markdown-table-content {
+  @apply rounded-2xl  p-4 mt-6 border border-[var(--color-border)];
+}
+
+.markdown-table-content aside {
+  @apply space-y-2;
+}
+
+.markdown-table-content h2 {
+  @apply text-lg font-semibold mb-2;
+}
+
+.markdown-table-content ul {
+  @apply list-disc pl-5 space-y-1;
+}
+
+.markdown-table-content li a {
+  @apply text-[var(--color-link)];
+}
+
 /* markdown-body */
 .markdown-body.introduction {
   @apply border border-[var(--color-border)] rounded-2xl p-4;
@@ -49,11 +71,11 @@ dialog::backdrop {
 
 .markdown-body ul li::before {
   content: "・";
-  @apply absolute left-0 text-gray-800;
+  @apply absolute left-0 text-[var(--color-passage-font)];
 }
 
 .markdown-body pre {
-  @apply p-4 rounded-2xl overflow-x-auto font-mono text-[#d5d5d6] bg-[#272822] break-words;
+  @apply p-4 rounded-2xl overflow-x-auto font-mono break-words;
 }
 
 .markdown-body pre > * {
