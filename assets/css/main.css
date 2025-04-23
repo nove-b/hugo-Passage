@@ -5,6 +5,11 @@
   @apply text-passage-font;
 }
 
+code *,
+pre * {
+  color: inherit; /* または必要であれば別のカスタムカラー */
+}
+
 button {
   @apply cursor-pointer hover:opacity-70 transition-opacity duration-200;
 }
@@ -52,28 +57,92 @@ dialog::backdrop {
   @apply border border-[var(--color-border)] rounded-2xl p-4;
 }
 
+.markdown-body h1 {
+  @apply text-3xl font-bold mt-8;
+}
+
 .markdown-body h2 {
-  @apply text-xl font-bold mt-6;
+  @apply text-2xl font-bold mt-8;
 }
 
 .markdown-body h3 {
-  @apply text-lg font-bold mt-6;
+  @apply text-xl font-bold mt-6;
+}
+
+.markdown-body h4 {
+  @apply text-lg font-bold mt-4;
+}
+
+.markdown-body h5 {
+  @apply text-base font-bold mt-4;
+}
+
+.markdown-body h6 {
+  @apply text-sm font-bold mt-4;
 }
 
 .markdown-body a {
-  @apply text-[var(--color-link)];
+  @apply text-[var(--color-link)] hover:underline;
+}
+
+.markdown-body blockquote {
+  @apply border-l-4 border-[var(--color-border)] pl-4 italic;
+}
+
+.markdown-body blockquote > p {
+  @apply mt-2;
+}
+
+.markdown-body table {
+  @apply w-full text-sm text-left border-collapse rounded-xl;
+  background-color: var(--color-input-bg);
+  color: var(--color-passage-font);
+  border: 1px solid var(--color-border);
+}
+
+.markdown-body thead {
+  background-color: var(--color-button-bg);
+}
+
+.markdown-body th {
+  @apply px-4 py-2 border-b;
+  color: var(--color-passage-font);
+  border-color: var(--color-border);
+}
+
+.markdown-body tbody tr {
+  @apply transition-colors;
+}
+
+.markdown-body tbody tr:hover {
+  background-color: var(--color-passage-bg);
+}
+
+.markdown-body td {
+  @apply px-4 py-2 align-top border-t;
+  color: var(--color-passage-font);
+  border-color: var(--color-border);
 }
 
 /* ベースの li スタイル */
-.markdown-body ul li {
-  @apply relative pl-4 list-none;
+.markdown-body ul,
+.markdown-body ol {
+  @apply pl-6 space-y-2;
 }
 
-.markdown-body ul li::before {
-  content: "・";
-  @apply absolute left-0 text-[var(--color-passage-font)];
+.markdown-body ul {
+  @apply list-disc;
 }
 
+.markdown-body ol {
+  @apply list-decimal;
+}
+
+.markdown-body li {
+  @apply relative;
+}
+
+/* pre */
 .markdown-body pre {
   @apply p-4 rounded-2xl overflow-x-auto font-mono break-words;
 }
@@ -85,16 +154,17 @@ dialog::backdrop {
 
 .markdown-body p > code {
   @apply p-1 text-xs;
-  /* 必要に応じて他のスタイルも追加できます */
 }
 
 .markdown-body p > code::before,
 .markdown-body p > code::after {
-  content: "'";
+  content: "`";
+  /* Backticks for inline code */
 }
 
 .markdown-body img {
-  @apply rounded-2xl;
+  @apply rounded-2xl max-w-full;
+  /* Make images responsive */
 }
 
 .markdown-body hr {
@@ -115,4 +185,32 @@ dialog::backdrop {
 
 .posts {
   @apply mt-6;
+}
+
+/* abbr, sub, sup, kbd, mark */
+.markdown-body abbr {
+  @apply border-b border-dotted border-[var(--color-border)];
+}
+
+.markdown-body sub,
+.markdown-body sup {
+  @apply align-baseline relative;
+  font-size: 0.75em;
+  line-height: 0;
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+}
+
+.markdown-body sup {
+  top: -0.8em;
+}
+
+.markdown-body kbd {
+  @apply inline-block bg-gray-100 dark:bg-gray-800 text-sm rounded px-2 py-1 font-mono;
+  border: 1px solid var(--color-border);
+}
+
+.markdown-body mark {
+  @apply bg-yellow-200 dark:bg-yellow-800;
 }
