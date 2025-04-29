@@ -7,7 +7,8 @@
 
 code *,
 pre * {
-  color: inherit; /* または必要であれば別のカスタムカラー */
+  color: inherit;
+  /* または必要であれば別のカスタムカラー */
 }
 
 button {
@@ -30,10 +31,14 @@ dialog::backdrop {
   @apply bg-[var(--color-modal-drop)];
 }
 
+.active-refine {
+  @apply ring-2 ring-[var(--color-ring)] font-bold;
+}
+
 /* markdown-table-content */
 
 .markdown-table-content {
-  @apply rounded-2xl  p-4 mt-6 border border-[var(--color-border)];
+  @apply rounded-2xl p-4 mt-6 border border-[var(--color-border)];
 }
 
 .markdown-table-content aside {
@@ -142,8 +147,7 @@ dialog::backdrop {
   @apply relative;
 }
 
-/* pre */
-.markdown-body pre {
+pre .markdown-body pre {
   @apply p-4 rounded-2xl overflow-x-auto font-mono break-words;
 }
 

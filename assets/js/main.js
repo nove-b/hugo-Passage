@@ -23,6 +23,13 @@
 
   for (const button of refineButton) {
     button.addEventListener("click", function () {
+      // 追加: 全ボタンから active-refine を外す
+      for (const btn of refineButton) {
+        btn.classList.remove("active-refine");
+      }
+      // 追加: クリックされたボタンに active-refine を付ける
+      this.classList.add("active-refine");
+
       const targetType = this.getAttribute("data-type");
       const sameType = document.querySelectorAll(`.${targetType}`);
       const articleItem = document.querySelectorAll(".article-item");
