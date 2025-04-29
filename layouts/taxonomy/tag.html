@@ -34,65 +34,7 @@
     {{ $yearPages := where $filteredPages "PublishDate.Year" $year }}
 
     {{ range $yearPages }}
-    <article class="relative">
-      <span
-        class="absolute top-0 -left-6 -translate-x-1/2 w-8 h-8 bg-passage-bg text-white flex items-center justify-center rounded-full text-lg">
-        {{ $type := .Params.type | default "post" }}
-        {{ if eq $type "contribute" }}
-
-        {{ partial "timeline-github.html" . }}
-        {{ else if eq $type "release" }}
-
-
-        {{ partial "timeline-release.html" . }}
-        {{ else }}
-
-
-        {{ partial "timeline-post.html" . }}
-        {{ end }}
-      </span>
-      <div class="flex items-center gap-2 mb-2">
-        <h3>
-          {{ $type := .Params.type | default "post" }}
-          {{ if eq $type "contribute" }}
-          <span class="px-3  py-1  px-3  py-1    text-sm  text-[var(--color-description-font)]">Contribute</span>
-          {{ else if eq $type "release" }}
-          <span class="px-3  py-1    text-sm  text-[var(--color-description-font)]">Release
-          </span>
-          {{ else }}
-          <span class="px-3  py-1    text-sm  text-[var(--color-description-font)]">Blog</span>
-          {{ end }}
-
-        </h3>
-
-        {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-        {{ $dateHuman := .Date | time.Format ":date_long" }}
-        <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
-      </div>
-      {{ if or (eq $type "contribute") (eq $type "release") }}
-      <a href="{{ .Params.link }}" target="_blank" class="block border border-[var(--color-border)] rounded-2xl p-4 relative">
-        <h2 >
-          {{ .Title }}<br /><span class="text-xs text-[var(--color-description-font)]">{{ .Params.link }}</span>
-
-        </h2>
-        <div class="absolute bottom-2.5 right-2.5">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 36 36"
-            style="fill: rgba(89, 99, 110, 1);transform: ;msFilter:;">
-            <path d="m13 3 3.293 3.293-7 7 1.414 1.414 7-7L21 11V3z"></path>
-            <path d="M19 19H5V5h7l-2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-5l-2-2v7z">
-            </path>
-          </svg>
-        </div>
-      </a>
-      {{ else }}
-      <a href="{{ .Permalink }}" class="block border border-[var(--color-border)] rounded-2xl p-4">
-        <h2>
-          {{ .Title }}
-        </h2>
-      </a>
-      {{ end }}
-
-    </article>
+    {{ partial "article-item.html" . }}
     {{ end }}
   </div>
 </section>
