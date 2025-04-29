@@ -24,10 +24,14 @@
   </p>
   {{ end }}
 </div>
-  <aside class="markdown-table-content">
-    <h2>目次</h2>
-    {{ .TableOfContents }}
-  </aside>
+{{ if and .Params.showToc .TableOfContents }}
+<aside class="markdown-table-content">
+  <h2>目次</h2>
+  {{ .TableOfContents }}
+</aside>
+{{ end }}
+
+
 <div class="markdown-body mt-6">
   {{ .Content }}
 </div>

@@ -7,6 +7,7 @@ enableGitInfo = true
 
 [params]
   analytics = "G-XXXXXXX123" # ダミーのGA4トラッキングID
+  description = 'description'
 
 [params.profile]
 name = "sample-user"
@@ -20,6 +21,10 @@ mail = "sample.user@example.com"
 discord = "https://discord.com/users/sample_user"
 linkedin = "https://www.linkedin.com/in/sample-user"
 link = "https://example.com/"
+
+[markup]
+  [markup.highlight]
+    disabled = true  # Chromaを無効にする
 
 [frontmatter]
   lastmod = ["lastmod", ":git", ":fileModTime", ":default"]
