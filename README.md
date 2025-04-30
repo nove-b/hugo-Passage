@@ -1,4 +1,4 @@
-Demo: [hugo-passage-demo.netlify.app/](hugo-passage-demo.netlify.app/)
+Demo: [hugo-passage-demo.netlify.app/](https://hugo-passage-demo.netlify.app/)
 
 # Passage - A Hugo Theme for Timelines
 
