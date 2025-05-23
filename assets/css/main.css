@@ -91,7 +91,7 @@ dialog::backdrop {
 }
 
 .markdown-body blockquote {
-  @apply border-l-4 border-[var(--color-border)] pl-4 italic;
+  @apply border-l-4 border-[var(--color-border)] pl-4;
 }
 
 .markdown-body blockquote > p {
@@ -173,6 +173,10 @@ pre .markdown-body pre {
 
 .markdown-body hr {
   @apply border-t border-[var(--color-border)];
+}
+
+.markdown-body .footnotes ol {
+  @apply mt-4;
 }
 
 .markdown-body > *:first-child {
