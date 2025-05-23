@@ -214,3 +214,16 @@ const debounce = (callback, delay) => {
     debouncedSearch(this.value);
   });
 })();
+
+(() => {
+  const menuModal = document.getElementById("menu-modal");
+  const openMenuBtn = document.getElementById("open-modal");
+  const closeMenuBtn = document.getElementById("menu-dialog-close");
+
+  openMenuBtn.addEventListener("click", () => {
+    menuModal.showModal();
+  });
+  closeMenuBtn.addEventListener("click", () => {
+    menuModal.close();
+  });
+})();

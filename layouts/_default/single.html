@@ -1,29 +1,31 @@
 {{ define "main" }}
 <h1 class="text-2xl font-bold">{{ .Title }}</h1>
 
-<div class="mt-4 flex items-center gap-4 text-xs text-gray-500">
-  <p>
+{{ if ne .Type "page" }}
+  <div class="mt-4 flex items-center gap-4 text-xs text-gray-500">
+    <p>
 
-    Created:
-    {{ $createdMachine := .PublishDate | time.Format "2006-01-02T15:04:05-07:00" }}
-    {{ $createdHuman := .PublishDate | time.Format ":date_long" }}
-    <relative-time datetime="{{ $createdMachine }}" class="no-wrap">
-      {{ $createdHuman }}
-    </relative-time>
-  </p>
+      Created:
+      {{ $createdMachine := .PublishDate | time.Format "2006-01-02T15:04:05-07:00" }}
+      {{ $createdHuman := .PublishDate | time.Format ":date_long" }}
+      <relative-time datetime="{{ $createdMachine }}" class="no-wrap">
+        {{ $createdHuman }}
+      </relative-time>
+    </p>
 
-  {{ if .GitInfo.CommitDate }}
-  <p>
+    {{ if .GitInfo.CommitDate }}
+    <p>
 
-    Modified:
-    {{ $modifiedMachine := .GitInfo.CommitDate | time.Format "2006-01-02T15:04:05-07:00" }}
-    {{ $modifiedHuman := .GitInfo.CommitDate | time.Format ":date_long" }}
-    <relative-time datetime="{{ $modifiedMachine }}" class="no-wrap">
-      {{ $modifiedHuman }}
-    </relative-time>
-  </p>
-  {{ end }}
-</div>
+      Modified:
+      {{ $modifiedMachine := .GitInfo.CommitDate | time.Format "2006-01-02T15:04:05-07:00" }}
+      {{ $modifiedHuman := .GitInfo.CommitDate | time.Format ":date_long" }}
+      <relative-time datetime="{{ $modifiedMachine }}" class="no-wrap">
+        {{ $modifiedHuman }}
+      </relative-time>
+    </p>
+    {{ end }}
+  </div>
+{{ end }}
 {{ if and .Params.showToc .TableOfContents }}
 <aside class="markdown-table-content">
   <h2>目次</h2>
@@ -37,36 +39,29 @@
 </div>
 {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
 
-<div class="mt-8">
-  <h3 class="text-xl font-semibold mb-4">新着記事</h3>
-  <ul class="space-y-4">
-    {{ $type := .Type | default "post" }}
-    {{ $allPages := where .Site.Pages "Type" "in" (slice $type "") }}
+{{ if ne .Type "page" }}
+  <div class="mt-8">
+    <h3 class="text-xl font-semibold mb-4">新着記事</h3>
+    <ul class="space-y-4">
+      {{ $type := .Type | default "post" }}
+      {{ $allPages := where .Site.Pages "Type" "in" (slice $type "") }}
 
-    <!-- draft: false の記事のみフィルタリング -->
-    {{ $allPages := where $allPages "Params.draft" "ne" true }}
+      <!-- draft: false の記事のみフィルタリング -->
+      {{ $allPages := where $allPages "Params.draft" "ne" true }}
 
-    {{ if gt (len $allPages) 0 }}
-    {{ $filteredPages := first 5 (where $allPages "Permalink" "ne" .Permalink) }}
-    {{ range $filteredPages }}
-    <li>
-      <a href="{{ .Permalink }}" class="underline">
-        {{ .Title }}
-      </a>
-    </li>
-    {{ end }}
-    {{ else }}
-    <li>記事が見つかりませんでした。</li>
-    {{ end }}
-  </ul>
-</div>
-
-
-
-
-
-
-
-
-
+      {{ if gt (len $allPages) 0 }}
+      {{ $filteredPages := first 5 (where $allPages "Permalink" "ne" .Permalink) }}
+      {{ range $filteredPages }}
+      <li>
+        <a href="{{ .Permalink }}" class="underline">
+          {{ .Title }}
+        </a>
+      </li>
+      {{ end }}
+      {{ else }}
+      <li>記事が見つかりませんでした。</li>
+      {{ end }}
+    </ul>
+  </div>
+{{ end }}
 {{ end }}

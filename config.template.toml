@@ -49,3 +49,12 @@ link = "https://example.com/"
     disableWatch = true
     source = 'hugo_stats.json'
     target = 'assets/notwatching/hugo_stats.json'
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 10
+
+[[menu.main]]
+  name = "プライバシーポリシー"
+  url = "/privacy/"
+  weight = 20
