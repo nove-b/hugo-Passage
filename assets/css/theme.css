@@ -6,6 +6,8 @@
     "Consolas", "DejaVu Sans Mono", "monospace";
 
   --color-passage-bg: #f5f5f5;
+  --color-menu-bg: #121212;
+  --color-menu-text: #f5f5f5;
   --color-modal-bg: #f5f6f7;
   --color-modal-drop: #00000040;
   --color-input-bg: #ffffff;
@@ -24,6 +26,8 @@
 /* Dark mode */
 .dark {
   --color-passage-bg: #121212;
+  --color-menu-bg: #f5f5f5;
+  --color-menu-text: #121212;
   --color-modal-bg: #23272f;
   --color-modal-drop: #343a46cc;
   --color-input-bg: #343a46;
