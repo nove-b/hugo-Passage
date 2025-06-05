@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* global */
-*:not(#open-modal) {
+* {
   @apply text-passage-font;
 }
 
