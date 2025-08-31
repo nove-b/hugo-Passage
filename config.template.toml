@@ -1,6 +1,7 @@
 baseURL = 'https://example.com/'
 languageCode = 'ja'
 title = 'My Hugo Blog'
+timeZone = "Asia/Tokyo"
 theme = 'passage'
 enableGitInfo = true
 
